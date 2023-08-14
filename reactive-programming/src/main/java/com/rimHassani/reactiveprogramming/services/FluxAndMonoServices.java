@@ -16,6 +16,12 @@ public class FluxAndMonoServices {
                 .log();
     }
 
+    public Flux<String> fruitesFluxFilter(int number){
+        return Flux.fromIterable(List.of("apples","bananas","mango"))
+                .filter(s->s.length()>number)
+                .log();
+    }
+
     public Mono<String> fruitMono(){
         return Mono.just("apples").log();
     }

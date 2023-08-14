@@ -21,6 +21,14 @@ class FluxAndMonoServicesTest {
     }
 
     @Test
+    void fruitesFluxFilter() {
+        var fruitsFlux = fluxAndMonoServices.fruitesFluxFilter(6);
+        StepVerifier.create(fruitsFlux)
+                .expectNext("bananas")
+                .verifyComplete();
+    }
+
+    @Test
     void fruitesFluxMap() {
         var fruitsFluxMap = fluxAndMonoServices.fruitesFluxMap();
         StepVerifier.create(fruitsFluxMap)
