@@ -21,6 +21,12 @@ public class FluxAndMonoServices {
                 .filter(s->s.length()>number)
                 .log();
     }
+    public Flux<String> fruitesFluxFilterMap(int number){
+        return Flux.fromIterable(List.of("apples","bananas","mango"))
+                .filter(s->s.length()>number)
+                .map(String::toUpperCase)
+                .log();
+    }
 
     public Mono<String> fruitMono(){
         return Mono.just("apples").log();
