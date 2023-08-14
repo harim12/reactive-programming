@@ -3,7 +3,9 @@ package com.rimHassani.reactiveprogramming.services;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
 import java.util.List;
+import java.util.Random;
 
 public class FluxAndMonoServices {
     public Flux<String> fruitesFlux(){
@@ -27,6 +29,20 @@ public class FluxAndMonoServices {
                 .map(String::toUpperCase)
                 .log();
     }
+    public Flux<String> fruitesFluxFlatMap(){
+        return Flux.fromIterable(List.of("apples","bananas","mango"))
+                .flatMap(s->Flux.just(s.split("")))
+                .log();
+    }
+    public Flux<String> fruitesFluxFlatMapAsync(){
+        return Flux.fromIterable(List.of("apples","bananas","mango"))
+                .flatMap(s->Flux.just(s.split("")))
+                .delayElements(
+                        Duration.ofMillis(new Random().nextInt(1000))
+                )
+                .log();
+    }
+
 
     public Mono<String> fruitMono(){
         return Mono.just("apples").log();

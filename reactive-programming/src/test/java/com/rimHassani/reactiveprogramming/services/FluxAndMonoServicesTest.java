@@ -39,12 +39,28 @@ class FluxAndMonoServicesTest {
     void fruitesFluxFilterMap() {
         var fruitsFluxFilterMap = fluxAndMonoServices.fruitesFluxFilterMap(6);
         StepVerifier.create(fruitsFluxFilterMap)
-                .expectNext("BANANAS")
+                .expectNext("apples","bananas","mango")
                 .verifyComplete();
     }
 
 
     @Test
     void fruitMono() {
+    }
+
+    @Test
+    void fruitesFluxFlatMap() {
+        var fruitsFluxFilterMap = fluxAndMonoServices.fruitesFluxFlatMap();
+        StepVerifier.create(fruitsFluxFilterMap)
+                .expectNextCount(18)
+                .verifyComplete();
+    }
+
+    @Test
+    void fruitesFluxFlatMapAsync() {
+        var fruitsFluxFilterMap = fluxAndMonoServices.fruitesFluxFlatMapAsync();
+        StepVerifier.create(fruitsFluxFilterMap)
+                .expectNextCount(18)
+                .verifyComplete();
     }
 }
